@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "book_borrow")
@@ -18,13 +19,15 @@ public class BookBorrowing {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column
     private String borrowerName;
 
-    @Column
     private Date borrowingDate;
 
-    @Column
     private Date returnDate;
+
+    @ManyToOne
+    @JoinColumn(name = "book_id")
+    private Book book;
+
 
 }

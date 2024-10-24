@@ -3,10 +3,9 @@ package com.library_system.demo.entity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -18,15 +17,12 @@ public class Author {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
 
-    @Column
     private String name;
 
-    @Column
-    private Date birthDate;
+    private LocalDate birthDate;
 
-    @Column
     private String country;
 
     @OneToMany(mappedBy = "author",cascade = CascadeType.ALL)
