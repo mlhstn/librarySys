@@ -50,6 +50,12 @@ public class BookController {
         Book updatedBook = bookService.updateBook(id, bookDetails);
         return ResponseEntity.ok(updatedBook);
     }
+    // Belirli bir kitabı ID’ye göre silme
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteBook(@PathVariable Long id) {
+        bookService.deleteBook(id);
+        return ResponseEntity.noContent().build(); // 204 No Content
+    }
 
 
 

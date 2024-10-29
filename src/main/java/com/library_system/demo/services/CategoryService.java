@@ -40,6 +40,14 @@ public class CategoryService {
 
         return categoryRepository.save(category);
     }
+    // Belirli bir kategoriyi ID’ye göre silme
+    public void deleteCategory(Integer id) {
+        if (!categoryRepository.existsById(id)) {
+            throw new RuntimeException("Category not found");
+        }
+        categoryRepository.deleteById(id);
+    }
+
 
 }
 

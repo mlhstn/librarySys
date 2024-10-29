@@ -52,4 +52,10 @@ public class PublisherController {
         Publisher updatedPublisher = publisherService.updatePublisher(id, publisherDetails);
         return ResponseEntity.ok(updatedPublisher);
     }
+    // Belirli bir yayınevini ID’ye göre silme
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletePublisher(@PathVariable Integer id) {
+        publisherService.deletePublisher(id);
+        return ResponseEntity.noContent().build();
+    }
 }

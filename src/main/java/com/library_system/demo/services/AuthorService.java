@@ -41,5 +41,12 @@ public class AuthorService {
 
         return authorRepository.save(author);
     }
+    // Belirli bir yazarı ID’ye göre silme
+    public void deleteAuthor(int id) {
+        if (!authorRepository.existsById(id)) {
+            throw new RuntimeException("Author not found");
+        }
+        authorRepository.deleteById(id);
+    }
 
 }

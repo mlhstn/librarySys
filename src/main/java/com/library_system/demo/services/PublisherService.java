@@ -42,4 +42,11 @@ public class PublisherService {
 
         return publisherRepository.save(publisher);
     }
+    // Belirli bir yayınevini ID’ye göre silme
+    public void deletePublisher(Integer id) {
+        if (!publisherRepository.existsById(id)) {
+            throw new RuntimeException("Publisher not found");
+        }
+        publisherRepository.deleteById(id);
+    }
 }

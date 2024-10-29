@@ -38,5 +38,12 @@ public class BookService {
 
         return bookRepository.save(book);
     }
+    // Belirli bir kitabı ID’ye göre silme
+    public void deleteBook(Long id) {
+        if (!bookRepository.existsById(id)) {
+            throw new RuntimeException("Book not found");
+        }
+        bookRepository.deleteById(id);
+    }
 
 }

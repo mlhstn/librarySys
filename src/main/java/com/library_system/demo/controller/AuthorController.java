@@ -50,6 +50,12 @@ public class AuthorController {
         Author updatedAuthor = authorService.updateAuthor(id, authorDetails);
         return ResponseEntity.ok(updatedAuthor);
     }
+    // Belirli bir yazarı ID’ye göre silme
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteAuthor(@PathVariable int id) {
+        authorService.deleteAuthor(id);
+        return ResponseEntity.noContent().build();
+    }
 
 }
 
