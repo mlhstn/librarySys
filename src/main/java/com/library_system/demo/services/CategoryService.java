@@ -1,10 +1,14 @@
 package com.library_system.demo.services;
 
+import com.library_system.demo.entity.Author;
 import com.library_system.demo.entity.Book;
 import com.library_system.demo.entity.Category;
 import com.library_system.demo.repository.CategoryRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
 
 @AllArgsConstructor
 @Service
@@ -15,5 +19,16 @@ public class CategoryService {
     public Category createCategory(Category category) {
         return categoryRepository.save(category);
     }
+
+    // Tüm kategorileri getirme
+    public List<Category> getAllCategories() {
+        return categoryRepository.findAll();
+    }
+
+    // ID'ye göre kategori getirme
+    public Optional<Category> getCategoryById(int id) {
+        return categoryRepository.findById(id);
+    }
+
 }
 
