@@ -42,4 +42,13 @@ public class CategoryController {
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
+    // Belirli bir kategoriyi ID’ye göre güncelleme
+    @PutMapping("/{id}")
+    public ResponseEntity<Category> updateCategory(
+            @PathVariable Integer id,
+            @RequestBody Category categoryDetails) {
+        Category updatedCategory = categoryService.updateCategory(id, categoryDetails);
+        return ResponseEntity.ok(updatedCategory);
+    }
+
 }

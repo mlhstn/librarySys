@@ -29,6 +29,17 @@ public class CategoryService {
     public Optional<Category> getCategoryById(int id) {
         return categoryRepository.findById(id);
     }
+    // Belirli bir kategoriyi ID’ye göre güncelleme
+    public Category updateCategory(Integer id, Category categoryDetails) {
+        Category category = categoryRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Category not found"));
+
+        // Güncellemeleri yap
+        category.setName(categoryDetails.getName());
+        category.setDescription(categoryDetails.getDescription());
+
+        return categoryRepository.save(category);
+    }
 
 }
 

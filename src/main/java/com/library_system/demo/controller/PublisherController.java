@@ -43,4 +43,13 @@ public class PublisherController {
                 .map(publisher -> new ResponseEntity<>(publisher, HttpStatus.OK))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
+
+    // Belirli bir yayınevini ID’ye göre güncelleme
+    @PutMapping("/{id}")
+    public ResponseEntity<Publisher> updatePublisher(
+            @PathVariable Integer id,
+            @RequestBody Publisher publisherDetails) {
+        Publisher updatedPublisher = publisherService.updatePublisher(id, publisherDetails);
+        return ResponseEntity.ok(updatedPublisher);
+    }
 }

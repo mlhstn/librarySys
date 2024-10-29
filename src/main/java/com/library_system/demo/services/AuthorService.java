@@ -29,4 +29,17 @@ public class AuthorService {
         return authorRepository.findById(id);
     }
 
+    // Belirli bir yazarı ID’ye göre güncelleme
+    public Author updateAuthor(int id, Author authorDetails) {
+        Author author = authorRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Author not found"));
+
+        // Güncellemeleri yap
+        author.setName(authorDetails.getName());
+        author.setBirthDate(authorDetails.getBirthDate());
+        author.setCountry(authorDetails.getCountry());
+
+        return authorRepository.save(author);
+    }
+
 }

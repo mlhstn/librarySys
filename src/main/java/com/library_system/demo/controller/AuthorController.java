@@ -42,6 +42,14 @@ public class AuthorController {
                 .map(author -> new ResponseEntity<>(author, HttpStatus.OK))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
+    // Belirli bir yazarı ID’ye göre güncelleme
+    @PutMapping("/{id}")
+    public ResponseEntity<Author> updateAuthor(
+            @PathVariable int id,
+            @RequestBody Author authorDetails) {
+        Author updatedAuthor = authorService.updateAuthor(id, authorDetails);
+        return ResponseEntity.ok(updatedAuthor);
+    }
 
 }
 

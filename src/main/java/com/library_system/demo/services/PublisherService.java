@@ -29,4 +29,17 @@ public class PublisherService {
     public Optional<Publisher> getPublisherById(int id) {
         return publisherRepository.findById(id);
     }
+
+    // Belirli bir yayınevini ID’ye göre güncelleme
+    public Publisher updatePublisher(Integer id, Publisher publisherDetails) {
+        Publisher publisher = publisherRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Publisher not found"));
+
+        // Güncellemeleri yap
+        publisher.setName(publisherDetails.getName());
+        publisher.setEstablishmentYear(publisherDetails.getEstablishmentYear());
+        publisher.setAdress(publisherDetails.getAdress());
+
+        return publisherRepository.save(publisher);
+    }
 }
