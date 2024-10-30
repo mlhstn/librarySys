@@ -52,9 +52,13 @@ public class CategoryController {
     }
     // Belirli bir kategoriyi ID’ye göre silme
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteCategory(@PathVariable Integer id) {
-        categoryService.deleteCategory(id);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<String> deleteCategory(@PathVariable int id) {
+        try {
+            categoryService.deleteCategory(id);
+            return ResponseEntity.ok("Kategori başarıyla silindi.");
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
     }
 
 }

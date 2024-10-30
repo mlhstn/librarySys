@@ -1,6 +1,7 @@
 package com.library_system.demo.services;
 
 import com.library_system.demo.entity.Book;
+import com.library_system.demo.entity.BookBorrowing;
 import com.library_system.demo.repository.BookBorrowingRepository;
 import com.library_system.demo.repository.BookRepository;
 import lombok.AllArgsConstructor;
@@ -29,6 +30,14 @@ public class BookBorrowingService {
         }
         book.setStock(book.getStock()-1);
         bookRepository.save(book);
+
+        // BookBorrowing kaydını ekleyin
+        BookBorrowing bookBorrowing = new BookBorrowing();
+        bookBorrowing.setBook(book);
+        bookBorrowing.setBorrowerName(borrowerName);
+        bookBorrowing.setBorrowingDate(borrowingDate);
+        bookBorrowing.setReturnDate(returnDate);
+        bookBorrowingRepository.save(bookBorrowing);
 
     }
 

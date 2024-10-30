@@ -41,11 +41,15 @@ public class CategoryService {
         return categoryRepository.save(category);
     }
     // Belirli bir kategoriyi ID’ye göre silme
-    public void deleteCategory(Integer id) {
-        if (!categoryRepository.existsById(id)) {
-            throw new RuntimeException("Category not found");
+    public void deleteCategory(int categoryId) {
+        Category category = categoryRepository.findById(categoryId)
+                .orElseThrow(() -> new IllegalArgumentException("Kategori bulunamadı"));
+
+        if (categoryRepository.existsByBooksIsNotEmpty()) {
+            throw new IllegalStateException("Bu kategoriye ait kitap var. Bu kategori silinemedi.");
         }
-        categoryRepository.deleteById(id);
+
+        categoryRepository.delete(category);
     }
 
 
